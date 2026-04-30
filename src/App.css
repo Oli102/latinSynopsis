@@ -1,0 +1,507 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==================== HEADER ==================== */
+.header {
+  background-color: white;
+  border-bottom: 2px solid #e0e0e0;
+  padding: 30px 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
+}
+
+.header-section {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.input-group,
+.dropdown-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-group label,
+.dropdown-group label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #555;
+  min-width: 100px;
+}
+
+.input-group input,
+.dropdown-group select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  color: #333;
+  min-width: 150px;
+  transition: border-color 0.2s;
+}
+
+.input-group input:focus,
+.dropdown-group select:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+/* ==================== VERB SECTION ==================== */
+.verb-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.partes-principales {
+  flex: 1;
+}
+
+.partes-principales h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #333;
+  font-weight: 600;
+}
+
+.parts-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.parts-display > div {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.parts-display strong {
+  display: block;
+  font-size: 15px;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+  font-family: 'Georgia', serif;
+  letter-spacing: 0.5px;
+}
+
+.parts-display small {
+  font-size: 12px;
+  color: #888;
+  display: block;
+}
+
+.meaning {
+  font-size: 13px;
+  color: #666;
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.verb-controls {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-random,
+.btn-reset {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.btn-random:hover,
+.btn-reset:hover {
+  background-color: #357abd;
+  box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
+}
+
+.btn-random:active,
+.btn-reset:active {
+  transform: scale(0.98);
+}
+
+/* ==================== PROGRESS ==================== */
+.progress {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+/* ==================== MAIN CONTENT ==================== */
+main {
+  flex: 1;
+  padding: 30px 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ==================== SECTIONS ==================== */
+.table-section {
+  margin-bottom: 35px;
+  background-color: white;
+  padding: 25px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.table-section h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+  border-bottom: 2px solid #4a90e2;
+  padding-bottom: 10px;
+  font-weight: 700;
+}
+
+.section-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  align-items: center;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.label-cell {
+  text-align: left;
+}
+
+.label-cell strong {
+  display: block;
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+
+.label-cell small {
+  font-size: 11px;
+  color: #999;
+  display: block;
+}
+
+/* ==================== INPUT CELLS ==================== */
+.input-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cell-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: 'Georgia', serif;
+  letter-spacing: 0.3px;
+  transition: all 0.2s;
+  background-color: white;
+  color: #333;
+}
+
+.cell-input::placeholder {
+  color: #ccc;
+}
+
+.cell-input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.cell-input.correct {
+  background-color: #f0f8e8;
+  border-color: #4a90e2;
+}
+
+.cell-input.revealed {
+  background-color: #f9f9f9;
+  border-color: #ccc;
+}
+
+.cell-input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.cell-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 100%;
+}
+
+.checkmark {
+  font-size: 18px;
+  color: #4a90e2;
+  font-weight: bold;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.reveal-btn {
+  padding: 6px 8px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  min-width: 32px;
+  transition: all 0.2s;
+}
+
+.reveal-btn:hover {
+  background-color: #e8e8e8;
+  border-color: #999;
+}
+
+.reveal-btn:active {
+  transform: scale(0.95);
+}
+
+.answer-display {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background-color: #333;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-family: 'Georgia', serif;
+  white-space: nowrap;
+  margin-bottom: 6px;
+  font-weight: 500;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.answer-display::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 8px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #333;
+}
+
+.cell-placeholder {
+  padding: 10px 12px;
+  background-color: #f5f5f5;
+  border: 1px dashed #ddd;
+  border-radius: 4px;
+  text-align: center;
+  color: #ccc;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+/* ==================== TENSE SUBSECTIONS ==================== */
+.tense-subsection {
+  margin-bottom: 20px;
+}
+
+.tense-subsection h3 {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  padding: 20px 40px;
+  text-align: center;
+  color: #888;
+  font-size: 13px;
+  margin-top: auto;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .header {
+    padding: 20px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+  }
+
+  .header-section {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .input-group,
+  .dropdown-group {
+    width: 100%;
+  }
+
+  .input-group input,
+  .dropdown-group select {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .verb-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .table-section {
+    padding: 15px;
+  }
+
+  .row {
+    grid-template-columns: 100px 1fr 1fr;
+    gap: 10px;
+    padding: 8px 0;
+  }
+
+  .cell-input,
+  .cell-placeholder,
+  .reveal-btn {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .footer {
+    padding: 15px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 15px;
+  }
+
+  .header h1 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .parts-display {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  main {
+    padding: 15px;
+  }
+
+  .table-section {
+    padding: 12px;
+    margin-bottom: 20px;
+  }
+
+  .row {
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 8px;
+    padding: 6px 0;
+  }
+
+  .label-cell strong {
+    font-size: 11px;
+  }
+
+  .label-cell small {
+    font-size: 9px;
+  }
+
+  .cell-input,
+  .cell-placeholder {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+
+  .reveal-btn {
+    padding: 4px 6px;
+    font-size: 12px;
+    min-width: 28px;
+  }
+
+  .checkmark {
+    font-size: 16px;
+  }
+}
