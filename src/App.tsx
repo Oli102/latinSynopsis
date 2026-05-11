@@ -13,6 +13,7 @@ import {
 } from "./logic/conjugation";
 import type { Person, Number, Voice } from "./logic/conjugation";
 import { InputCell } from "./components/InputCell";
+import { MacronBar } from "./components/MacronBar";
 import "./App.css";
 
 interface CellState {
@@ -544,14 +545,7 @@ const App: React.FC = () => {
         </section>
       </main>
 
-      <div className="macron-toolbar">
-        <button onClick={() => insertMacron("ā")}>ā</button>
-        <button onClick={() => insertMacron("ē")}>ē</button>
-        <button onClick={() => insertMacron("ī")}>ī</button>
-        <button onClick={() => insertMacron("ō")}>ō</button>
-        <button onClick={() => insertMacron("ū")}>ū</button>
-        <button onClick={() => insertMacron("ȳ")}>ȳ</button>
-      </div>
+      <MacronBar onMacronClick={insertMacron} />
 
       <footer className="footer">
         <p>
