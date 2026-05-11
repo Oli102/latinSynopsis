@@ -394,6 +394,29 @@ main {
   margin-top: auto;
 }
 
+.macron-toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 10px 40px;
+  justify-content: center;
+  background-color: white;
+  border-top: 1px solid #e6e6e6;
+}
+
+.macron-toolbar button {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fafafa;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.macron-toolbar button:hover {
+  background: #f0f8ff;
+  border-color: #cfe6ff;
+}
+
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 768px) {
   .header {

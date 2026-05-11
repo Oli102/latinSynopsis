@@ -7,6 +7,7 @@ interface InputCellProps {
   isRevealed: boolean;
   onChange: (value: string) => void;
   onReveal: () => void;
+  onFocus?: () => void;
   disabled: boolean;
 }
 
@@ -17,6 +18,7 @@ export const InputCell: React.FC<InputCellProps> = ({
   isRevealed,
   onChange,
   onReveal,
+  onFocus,
   disabled,
 }) => {
   return (
@@ -25,6 +27,7 @@ export const InputCell: React.FC<InputCellProps> = ({
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        onFocus={() => onFocus && onFocus()}
         disabled={disabled}
         className={`cell-input ${isCorrect && value ? "correct" : ""} ${
           isRevealed ? "revealed" : ""

@@ -30,6 +30,7 @@ const App: React.FC = () => {
   const [selectedPerson, setSelectedPerson] = useState<Person>(3);
   const [selectedNumber, setSelectedNumber] = useState<Number>("sg");
   const [answers, setAnswers] = useState<AnswerState>({});
+  const [focusedCell, setFocusedCell] = useState<string | null>(null);
 
   const handleRandomVerb = useCallback(() => {
     setCurrentVerb(getRandomVerb());
@@ -176,6 +177,16 @@ const App: React.FC = () => {
     setAnswers({});
   };
 
+  const insertMacron = (ch: string) => {
+    if (!focusedCell) return;
+    const parts = focusedCell.split("-");
+    if (parts.length < 3) return;
+    const [section, type, voice] = parts;
+    const state = answers[focusedCell];
+    const current = state?.value || "";
+    handleCellChange(section, type, voice as Voice, current + ch);
+  };
+
   return (
     <div className="app-container">
       <header className="header">
@@ -272,6 +283,7 @@ const App: React.FC = () => {
                 isRevealed={getCellState("infinitive", "present-active", "active").revealed}
                 onChange={(v) => handleCellChange("infinitive", "present-active", "active", v)}
                 onReveal={() => handleCellReveal("infinitive", "present-active", "active")}
+                onFocus={() => setFocusedCell(cellKey("infinitive", "present-active", "active"))}
                 disabled={getCellState("infinitive", "present-active", "active").revealed}
               />
               <InputCell
@@ -281,6 +293,7 @@ const App: React.FC = () => {
                 isRevealed={getCellState("infinitive", "present-passive", "passive").revealed}
                 onChange={(v) => handleCellChange("infinitive", "present-passive", "passive", v)}
                 onReveal={() => handleCellReveal("infinitive", "present-passive", "passive")}
+                onFocus={() => setFocusedCell(cellKey("infinitive", "present-passive", "passive"))}
                 disabled={getCellState("infinitive", "present-passive", "passive").revealed}
               />
             </div>
@@ -296,6 +309,7 @@ const App: React.FC = () => {
                 isRevealed={getCellState("infinitive", "perfect-active", "active").revealed}
                 onChange={(v) => handleCellChange("infinitive", "perfect-active", "active", v)}
                 onReveal={() => handleCellReveal("infinitive", "perfect-active", "active")}
+                onFocus={() => setFocusedCell(cellKey("infinitive", "perfect-active", "active"))}
                 disabled={getCellState("infinitive", "perfect-active", "active").revealed}
               />
               <InputCell
@@ -305,6 +319,7 @@ const App: React.FC = () => {
                 isRevealed={getCellState("infinitive", "perfect-passive", "passive").revealed}
                 onChange={(v) => handleCellChange("infinitive", "perfect-passive", "passive", v)}
                 onReveal={() => handleCellReveal("infinitive", "perfect-passive", "passive")}
+                onFocus={() => setFocusedCell(cellKey("infinitive", "perfect-passive", "passive"))}
                 disabled={getCellState("infinitive", "perfect-passive", "passive").revealed}
               />
             </div>
@@ -320,6 +335,7 @@ const App: React.FC = () => {
                 isRevealed={getCellState("infinitive", "future-active", "active").revealed}
                 onChange={(v) => handleCellChange("infinitive", "future-active", "active", v)}
                 onReveal={() => handleCellReveal("infinitive", "future-active", "active")}
+                onFocus={() => setFocusedCell(cellKey("infinitive", "future-active", "active"))}
                 disabled={getCellState("infinitive", "future-active", "active").revealed}
               />
               <InputCell
@@ -329,6 +345,7 @@ const App: React.FC = () => {
                 isRevealed={getCellState("infinitive", "future-passive", "passive").revealed}
                 onChange={(v) => handleCellChange("infinitive", "future-passive", "passive", v)}
                 onReveal={() => handleCellReveal("infinitive", "future-passive", "passive")}
+                onFocus={() => setFocusedCell(cellKey("infinitive", "future-passive", "passive"))}
                 disabled={getCellState("infinitive", "future-passive", "passive").revealed}
               />
             </div>
@@ -351,6 +368,7 @@ const App: React.FC = () => {
                 isRevealed={getCellState("imperative", "sg-active", "active").revealed}
                 onChange={(v) => handleCellChange("imperative", "sg-active", "active", v)}
                 onReveal={() => handleCellReveal("imperative", "sg-active", "active")}
+                onFocus={() => setFocusedCell(cellKey("imperative", "sg-active", "active"))}
                 disabled={getCellState("imperative", "sg-active", "active").revealed}
               />
               <InputCell
@@ -360,6 +378,7 @@ const App: React.FC = () => {
                 isRevealed={getCellState("imperative", "sg-passive", "passive").revealed}
                 onChange={(v) => handleCellChange("imperative", "sg-passive", "passive", v)}
                 onReveal={() => handleCellReveal("imperative", "sg-passive", "passive")}
+                onFocus={() => setFocusedCell(cellKey("imperative", "sg-passive", "passive"))}
                 disabled={getCellState("imperative", "sg-passive", "passive").revealed}
               />
             </div>
@@ -375,6 +394,7 @@ const App: React.FC = () => {
                 isRevealed={getCellState("imperative", "pl-active", "active").revealed}
                 onChange={(v) => handleCellChange("imperative", "pl-active", "active", v)}
                 onReveal={() => handleCellReveal("imperative", "pl-active", "active")}
+                onFocus={() => setFocusedCell(cellKey("imperative", "pl-active", "active"))}
                 disabled={getCellState("imperative", "pl-active", "active").revealed}
               />
               <InputCell
@@ -384,6 +404,7 @@ const App: React.FC = () => {
                 isRevealed={getCellState("imperative", "pl-passive", "passive").revealed}
                 onChange={(v) => handleCellChange("imperative", "pl-passive", "passive", v)}
                 onReveal={() => handleCellReveal("imperative", "pl-passive", "passive")}
+                onFocus={() => setFocusedCell(cellKey("imperative", "pl-passive", "passive"))}
                 disabled={getCellState("imperative", "pl-passive", "passive").revealed}
               />
             </div>
@@ -406,6 +427,7 @@ const App: React.FC = () => {
                 isRevealed={getCellState("participle", "present-active", "active").revealed}
                 onChange={(v) => handleCellChange("participle", "present-active", "active", v)}
                 onReveal={() => handleCellReveal("participle", "present-active", "active")}
+                onFocus={() => setFocusedCell(cellKey("participle", "present-active", "active"))}
                 disabled={getCellState("participle", "present-active", "active").revealed}
               />
               <div className="cell-placeholder">—</div>
@@ -423,6 +445,7 @@ const App: React.FC = () => {
                 isRevealed={getCellState("participle", "perfect-passive", "passive").revealed}
                 onChange={(v) => handleCellChange("participle", "perfect-passive", "passive", v)}
                 onReveal={() => handleCellReveal("participle", "perfect-passive", "passive")}
+                onFocus={() => setFocusedCell(cellKey("participle", "perfect-passive", "passive"))}
                 disabled={getCellState("participle", "perfect-passive", "passive").revealed}
               />
             </div>
@@ -438,6 +461,7 @@ const App: React.FC = () => {
                 isRevealed={getCellState("participle", "future-active", "active").revealed}
                 onChange={(v) => handleCellChange("participle", "future-active", "active", v)}
                 onReveal={() => handleCellReveal("participle", "future-active", "active")}
+                onFocus={() => setFocusedCell(cellKey("participle", "future-active", "active"))}
                 disabled={getCellState("participle", "future-active", "active").revealed}
               />
               <div className="cell-placeholder">—</div>
@@ -463,6 +487,7 @@ const App: React.FC = () => {
                     isRevealed={getCellState("indicative", tense + "-active", "active").revealed}
                     onChange={(v) => handleCellChange("indicative", tense + "-active", "active", v)}
                     onReveal={() => handleCellReveal("indicative", tense + "-active", "active")}
+                    onFocus={() => setFocusedCell(cellKey("indicative", tense + "-active", "active"))}
                     disabled={getCellState("indicative", tense + "-active", "active").revealed}
                   />
                   <InputCell
@@ -472,6 +497,7 @@ const App: React.FC = () => {
                     isRevealed={getCellState("indicative", tense + "-passive", "passive").revealed}
                     onChange={(v) => handleCellChange("indicative", tense + "-passive", "passive", v)}
                     onReveal={() => handleCellReveal("indicative", tense + "-passive", "passive")}
+                    onFocus={() => setFocusedCell(cellKey("indicative", tense + "-passive", "passive"))}
                     disabled={getCellState("indicative", tense + "-passive", "passive").revealed}
                   />
                 </div>
@@ -498,6 +524,7 @@ const App: React.FC = () => {
                     isRevealed={getCellState("subjunctive", tense + "-active", "active").revealed}
                     onChange={(v) => handleCellChange("subjunctive", tense + "-active", "active", v)}
                     onReveal={() => handleCellReveal("subjunctive", tense + "-active", "active")}
+                    onFocus={() => setFocusedCell(cellKey("subjunctive", tense + "-active", "active"))}
                     disabled={getCellState("subjunctive", tense + "-active", "active").revealed}
                   />
                   <InputCell
@@ -507,6 +534,7 @@ const App: React.FC = () => {
                     isRevealed={getCellState("subjunctive", tense + "-passive", "passive").revealed}
                     onChange={(v) => handleCellChange("subjunctive", tense + "-passive", "passive", v)}
                     onReveal={() => handleCellReveal("subjunctive", tense + "-passive", "passive")}
+                    onFocus={() => setFocusedCell(cellKey("subjunctive", tense + "-passive", "passive"))}
                     disabled={getCellState("subjunctive", tense + "-passive", "passive").revealed}
                   />
                 </div>
@@ -515,6 +543,15 @@ const App: React.FC = () => {
           )}
         </section>
       </main>
+
+      <div className="macron-toolbar">
+        <button onClick={() => insertMacron("ā")}>ā</button>
+        <button onClick={() => insertMacron("ē")}>ē</button>
+        <button onClick={() => insertMacron("ī")}>ī</button>
+        <button onClick={() => insertMacron("ō")}>ō</button>
+        <button onClick={() => insertMacron("ū")}>ū</button>
+        <button onClick={() => insertMacron("ȳ")}>ȳ</button>
+      </div>
 
       <footer className="footer">
         <p>

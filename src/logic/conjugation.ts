@@ -635,5 +635,7 @@ export function normalizeLatin(text: string): string {
 }
 
 export function validateAnswer(correct: string, userInput: string): boolean {
-  return normalizeLatin(correct.toLowerCase()) === normalizeLatin(userInput.toLowerCase());
+  // Strict comparison: macrons are significant. Compare lowercased, trimmed strings without
+  // removing macrons so missing macrons are treated as incorrect.
+  return correct.trim().toLowerCase() === userInput.trim().toLowerCase();
 }
